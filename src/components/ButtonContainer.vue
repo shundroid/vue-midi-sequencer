@@ -3,12 +3,7 @@
     <md-button class="md-icon-button md-raised md-accent">
       <md-icon>list</md-icon>
     </md-button>
-    <md-speed-dial md-mode="scale" class="md-fab-bottom-right">
-      <md-button class="md-fab" md-fab-trigger>
-        Note
-      </md-button>
-      <note-list-item v-for="note in notes" :image="note.image" />
-    </md-speed-dial>
+    <note-list />
     <md-button class="md-icon-button md-raised md-accent">
       <md-icon>play_arrow</md-icon>
     </md-button>
@@ -16,15 +11,11 @@
 </template>
 
 <script>
-import NoteListItem from "@components/NoteListItem";
-import notes from "@lib/getNotes";
+import NoteList from "@components/NoteList";
 
 export default {
   components: {
-    NoteListItem
-  },
-  data() {
-    return { notes };
+    NoteList
   }
 };
 </script>

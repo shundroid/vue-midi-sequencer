@@ -14,6 +14,7 @@ import Score from "@components/Score";
 import ButtonContainer from "@components/ButtonContainer";
 import store from "@vuex/store";
 import "./vueMaterial";
+import "./style.css";
 
 export default {
   name: "app",

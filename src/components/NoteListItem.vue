@@ -1,19 +1,20 @@
 <template>
-  <md-button class="md-fab md-mini md-clean">
-    <img :src="image" />
+  <md-button class="md-fab md-mini md-clean button">
+    {{ font }}
   </md-button>
 </template>
 
 <script>
 export default {
   props: {
-    image: String
+    font: String
   }
 };
 </script>
 
 <style scoped>
-img {
-  max-height: 30px;
+.button {
+  font-family: "notes";
+  font-size: 20px;
 }
 </style>
