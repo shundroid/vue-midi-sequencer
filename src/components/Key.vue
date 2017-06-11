@@ -1,5 +1,7 @@
 <template>
-  <button :class="classes" />
+  <button :class="classes">
+    {{ caption }}
+  </button>
 </template>
 
 <script>
@@ -14,6 +16,9 @@ export default {
         "black-key": this.keyType === "black",
         "white-key": this.keyType === "white"
       };
+    },
+    caption() {
+      return this.pitch.substring(0, 1) === "C" ? this.pitch : "";
     }
   }
 };
@@ -25,6 +30,7 @@ export default {
 button {
   border: 1px solid black;
   display: block;
+  text-align: right;
 }
 
 .black-key {
