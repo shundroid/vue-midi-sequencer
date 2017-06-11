@@ -7,12 +7,14 @@
 
 <script>
 import Hello from "./components/Hello";
+import store from "./vuex/store";
 
 export default {
   name: "app",
   components: {
     Hello
-  }
+  },
+  store
 };
 </script>
 
