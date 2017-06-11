@@ -1,12 +1,33 @@
 <template>
   <div>
-    hello
+    <key v-for="key in keys" :keyType="key.type" :pitch="key.name" />
   </div>
 </template>
 
 <script>
-export default {};
+import Key from "@components/Key";
+import { allKeys, getTypeOfKey } from "@lib/getOctaves";
+
+export default {
+  components: {
+    Key
+  },
+  data() {
+    return {
+      keys: allKeys.map(key => {
+        return {
+          type: getTypeOfKey(key),
+          name: key
+        };
+      }).reverse()
+    };
+  }
+};
 </script>
 
-<style>
+<style scoped>
+div {
+  width: 100px;
+  height: 100%;
+}
 </style>
