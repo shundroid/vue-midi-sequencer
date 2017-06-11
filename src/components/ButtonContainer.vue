@@ -7,24 +7,7 @@
       <md-button class="md-fab" md-fab-trigger>
         Note
       </md-button>
-      <md-button class="md-fab md-mini md-clean">
-        <img src="../assets/notes/1.svg" />
-      </md-button>
-      <md-button class="md-fab md-mini md-clean">
-        <img src="../assets/notes/2.svg" />
-      </md-button>
-      <md-button class="md-fab md-mini md-clean">
-        <img src="../assets/notes/4.svg" />
-      </md-button>
-      <md-button class="md-fab md-mini md-clean">
-        <img src="../assets/notes/8.svg" />
-      </md-button>
-      <md-button class="md-fab md-mini md-clean">
-        <img src="../assets/notes/16.svg" />
-      </md-button>
-      <md-button class="md-fab md-mini md-clean">
-        <img src="../assets/notes/32.svg" />
-      </md-button>
+      <note-list-item v-for="note in notes" :image="note.image" />
     </md-speed-dial>
     <md-button class="md-icon-button md-raised md-accent">
       <md-icon>play_arrow</md-icon>
@@ -33,8 +16,16 @@
 </template>
 
 <script>
-export default {
+import NoteListItem from "@components/NoteListItem";
+import notes from "@lib/getNotes";
 
+export default {
+  components: {
+    NoteListItem
+  },
+  data() {
+    return { notes };
+  }
 };
 </script>
 

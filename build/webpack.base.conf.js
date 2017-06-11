@@ -25,7 +25,8 @@ module.exports = {
       "@": resolve("src"),
       "@components": resolve("src/components"),
       "@vuex": resolve("src/vuex"),
-      "@lib": resolve("src/lib")
+      "@lib": resolve("src/lib"),
+      "@assets": resolve("src/assets")
     }
   },
   module: {
