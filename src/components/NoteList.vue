@@ -3,7 +3,11 @@
     <md-button class="md-fab note-preview" md-fab-trigger>
       {{ currentFont }}
     </md-button>
-    <note-list-item v-for="note in notes" :font="note.font" :length="note.length" />
+    <note-list-item
+      v-for="(note, index) in notes"
+      :key="index"
+      :font="note.font"
+      :length="note.length" />
   </md-speed-dial>
 </template>
 

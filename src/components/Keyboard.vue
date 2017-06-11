@@ -1,6 +1,11 @@
 <template>
   <div>
-    <key v-for="(key, index) in keys" :index="index" :keyType="key.type" :pitch="key.name" />
+    <key
+      v-for="(key, index) in keys"
+      :key="index"
+      :index="index"
+      :keyType="key.type"
+      :pitch="key.name" />
   </div>
 </template>
 

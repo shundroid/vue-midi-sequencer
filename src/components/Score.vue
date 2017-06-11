@@ -1,6 +1,9 @@
 <template>
   <div>
-    <score-row v-for="key in keys" :keyType="key.type" />
+    <score-row
+      v-for="(key, index) in keys"
+      :key="index"
+      :keyType="key.type" />
   </div>
 </template>
 
