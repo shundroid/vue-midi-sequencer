@@ -1,20 +1,25 @@
 <template>
   <div id="app">
-    <keyboard />
-    <score />
+    <main>
+      <keyboard />
+      <score />
+    </main>
+    <button-container />
   </div>
 </template>
 
 <script>
 import Keyboard from "@components/Keyboard";
 import Score from "@components/Score";
+import ButtonContainer from "@components/ButtonContainer";
 import store from "@vuex/store";
 
 export default {
   name: "app",
   components: {
     Keyboard,
-    Score
+    Score,
+    ButtonContainer
   },
   store
 };
@@ -24,6 +29,11 @@ export default {
 #app {
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+main {
+  height: 100%;
+  overflow: scroll;
   display: flex;
 }
 </style>

@@ -29,5 +29,6 @@ export default {
 div {
   width: 100px;
   height: 100%;
+  position: relative;
 }
 </style>
