@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes">
+  <button :class="classes" :style="{ top: index * 14 + 'px' }">
     {{ caption }}
   </button>
 </template>
@@ -8,7 +8,8 @@
 export default {
   props: {
     pitch: String,
-    keyType: String
+    keyType: String,
+    index: Number
   },
   computed: {
     classes() {
@@ -18,7 +19,7 @@ export default {
       };
     },
     caption() {
-      return this.pitch.substring(0, 1) === "C" ? this.pitch : "";
+      return /C[0-9]/.test(this.pitch) ? this.pitch : "";
     }
   }
 };
@@ -35,10 +36,9 @@ button {
 
 .black-key {
   width: 70px;
-  height: 16px;
+  height: 14px;
   background-color: black;
   position: absolute;
-  transform: translateY(-8px);
 }
 
 .white-key {

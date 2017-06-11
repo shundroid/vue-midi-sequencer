@@ -25,8 +25,8 @@ export function generateOctaves() {
 
 export const allKeys = [
   "A0", "A#0", "B0",
-  ...generateOctaves(),
-  "C8"
+  ...generateOctaves()//,
+//  "C8"
 ];
 
 export function getKeyNumber(key) {

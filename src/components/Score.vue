@@ -1,16 +1,16 @@
 <template>
   <div>
-    <key v-for="(key, index) in keys" :index="index" :keyType="key.type" :pitch="key.name" />
+    <score-row v-for="key in keys" :keyType="key.type" />
   </div>
 </template>
 
 <script>
-import Key from "@components/Key";
+import ScoreRow from "@components/ScoreRow";
 import { allKeys, getTypeOfKey } from "@lib/getOctaves";
 
 export default {
   components: {
-    Key
+    ScoreRow
   },
   data() {
     return {
@@ -27,7 +27,6 @@ export default {
 
 <style scoped>
 div {
-  width: 100px;
-  height: 100%;
+  flex: 1;
 }
 </style>
