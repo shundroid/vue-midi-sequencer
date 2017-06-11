@@ -1,20 +1,19 @@
 <template>
   <md-speed-dial md-mode="scale" class="md-fab-bottom-right">
     <md-button class="md-fab note-preview" md-fab-trigger>
-      {{ currentFont }}
+      {{ currentNote.font }}
     </md-button>
     <note-list-item
       v-for="(note, index) in notes"
       :key="index"
-      :font="note.font"
-      :length="note.length" />
+      :note="note" />
   </md-speed-dial>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import NoteListItem from "@components/NoteListItem";
-import { default as notes, getNoteFromLength } from "@lib/getNotes";
+import notes from "@lib/getNotes";
 
 export default {
   components: {
@@ -26,10 +25,7 @@ export default {
   computed: {
     ...mapState([
       "currentNote"
-    ]),
-    currentFont() {
-      return getNoteFromLength(this.currentNote).font;
-    }
+    ])
   }
 };
 </script>

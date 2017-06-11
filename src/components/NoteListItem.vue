@@ -1,6 +1,6 @@
 <template>
   <md-button class="md-fab md-mini md-clean button" @click.native="click">
-    {{ font }}
+    {{ note.font }}
   </md-button>
 </template>
 
@@ -9,15 +9,14 @@ import { mapActions } from "vuex";
 
 export default {
   props: {
-    font: String,
-    length: Number
+    note: Object
   },
   methods: {
     ...mapActions([
       "updateCurrentNote"
     ]),
     click() {
-      this.updateCurrentNote(this.length);
+      this.updateCurrentNote(this.note);
     }
   }
 };
