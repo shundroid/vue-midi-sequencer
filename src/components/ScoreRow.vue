@@ -1,18 +1,36 @@
 <template>
-  <div :class="classes" />
+  <div
+    :class="classes"
+    @mousedown="add">
+
+  </div>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+import { positionToTiming } from "@lib/timing";
+
 export default {
   props: {
+    keyName: String,
     keyType: String
   },
   computed: {
+    ...mapState(["currentNote"]),
     classes() {
       return {
         "black-score": this.keyType === "black",
         "white-score": this.keyType === "white"
       };
+    }
+  },
+  methods: {
+    ...mapActions(["addNote"]),
+    add(event) {
+      this.addNote({
+        key: this.keyName,
+        timing: positionToTiming(event.offsetX, this.currentNote.length)
+      });
     }
   }
 };

@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <main>
-      <keyboard />
-      <score />
-    </main>
+    <section>
+      <main>
+        <keyboard />
+        <score />
+      </main>
+    </section>
     <button-container />
   </div>
 </template>
@@ -31,12 +33,14 @@ export default {
 #app {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   position: relative;
 }
-main {
+section {
+  width: 100%;
   height: 100%;
   overflow: scroll;
+}
+main {
   display: flex;
 }
 </style>

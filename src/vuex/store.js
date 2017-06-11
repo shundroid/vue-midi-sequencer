@@ -5,12 +5,19 @@ import { defaultNote } from "@lib/config";
 Vue.use(Vuex);
 
 export const state = {
-  currentNote: defaultNote
+  currentNote: defaultNote,
+  notes: []
 };
 
 export const mutations = {
   updateCurrentNote(state, note) {
     state.currentNote = note;
+  },
+  addNote(state, { key, timing }) {
+    state.notes.push({
+      key, timing,
+      length: 0
+    });
   }
 };
 
@@ -30,7 +37,8 @@ export function generateSimpleActions(mutations) {
 
 export const actions = {
   ...generateSimpleActions([
-    "updateCurrentNote"
+    "updateCurrentNote",
+    "addNote"
   ])
 };
 
