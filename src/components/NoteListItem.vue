@@ -1,13 +1,24 @@
 <template>
-  <md-button class="md-fab md-mini md-clean button">
+  <md-button class="md-fab md-mini md-clean button" @click.native="click">
     {{ font }}
   </md-button>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   props: {
-    font: String
+    font: String,
+    length: Number
+  },
+  methods: {
+    ...mapActions([
+      "updateCurrentNote"
+    ]),
+    click() {
+      this.updateCurrentNote(this.length);
+    }
   }
 };
 </script>

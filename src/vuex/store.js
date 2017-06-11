@@ -9,11 +9,29 @@ export const state = {
 };
 
 export const mutations = {
-
+  updateCurrentNote(state, note) {
+    state.currentNote = note;
+  }
 };
 
-export const actions = {
+export function generateSimpleActions(mutations) {
+  const actions = {};
+  mutations.forEach(mutation => {
+    actions[mutation] = ({ commit }, payload) => {
+      if (payload === 0 || payload) {
+        commit(mutation, payload);
+      } else {
+        commit(mutation);
+      }
+    };
+  });
+  return actions;
+}
 
+export const actions = {
+  ...generateSimpleActions([
+    "updateCurrentNote"
+  ])
 };
 
 export default new Vuex.Store({
