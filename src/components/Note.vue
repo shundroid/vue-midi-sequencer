@@ -83,6 +83,7 @@ export default {
 div {
   position: absolute;
   height: 14px;
-  background-color: aqua;
+  background-color: #64b5f6;
+  border: 2px solid #42a5f5;
 }
 </style>
