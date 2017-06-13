@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export const state = {
   currentNote: defaultNote,
-  notes: []
+  notes: [],
+  isEditingScore: false
 };
 
 export const mutations = {
@@ -21,6 +22,12 @@ export const mutations = {
   },
   updateNoteLength(state, { index, length }) {
     state.notes[index].length = length;
+  },
+  startEditingScore(state) {
+    state.isEditingScore = true;
+  },
+  finishEditingScore(state) {
+    state.isEditingScore = false;
   }
 };
 
@@ -42,7 +49,9 @@ export const actions = {
   ...generateSimpleActions([
     "updateCurrentNote",
     "addNote",
-    "updateNoteLength"
+    "updateNoteLength",
+    "startEditingScore",
+    "finishEditingScore"
   ])
 };
 

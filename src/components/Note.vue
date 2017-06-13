@@ -19,19 +19,22 @@ export default {
     storeLength: Number
   },
   mounted() {
-    this.length = this.minimumUnit;
-    this.startEditingEndTime();
+    if (this.isEditingScore) {
+      this.length = this.minimumUnit;
+      this.startEditingEndTime();
+    }
   },
   data() {
     return {
       state: "normal",
-      length: 0
+      length: this.storeLength
     };
   },
   computed: {
     ...mapState({
       minimumUnit: state => state.currentNote.length
     }),
+    ...mapState(["isEditingScore"]),
     bottom() {
       return `${(getKeyNumber(this.keyName) - 1) * keyWidth}px`;
     },

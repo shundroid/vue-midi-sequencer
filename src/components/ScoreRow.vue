@@ -1,9 +1,7 @@
 <template>
   <div
     :class="classes"
-    @mousedown="add">
-
-  </div>
+    @mousedown="add" />
 </template>
 
 <script>
@@ -25,12 +23,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["addNote"]),
+    ...mapActions(["addNote", "startEditingScore", "finishEditingScore"]),
     add(event) {
+      this.startEditingScore();
+      window.addEventListener("mouseup", this.end);
       this.addNote({
         key: this.keyName,
         timing: positionToTiming(event.offsetX, this.currentNote.length)
       });
+    },
+    end() {
+      this.finishEditingScore();
+      window.removeEventListener("mouseup", this.end);
     }
   }
 };

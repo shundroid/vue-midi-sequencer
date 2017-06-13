@@ -11,7 +11,7 @@
       :index="index"
       :keyName="note.key"
       :timing="note.timing"
-      :length="note.length" />
+      :storeLength="note.length" />
   </div>
 </template>
 
