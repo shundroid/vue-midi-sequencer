@@ -23,6 +23,12 @@ export const mutations = {
   updateNoteLength(state, { index, length }) {
     state.notes[index].length = length;
   },
+  updateNoteTiming(state, { index, timing }) {
+    state.notes[index].timing = timing;
+  },
+  updateNoteKeyNumber(state, { index, keyNumber }) {
+    state.notes[index].key = keyNumber;
+  },
   removeNote(state, index) {
     state.notes.splice(index, 1);
   },
@@ -54,6 +60,8 @@ export const actions = {
     "addNote",
     "removeNote",
     "updateNoteLength",
+    "updateNoteTiming",
+    "updateNoteKeyNumber",
     "startEditingScore",
     "finishEditingScore"
   ])

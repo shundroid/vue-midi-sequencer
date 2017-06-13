@@ -9,7 +9,7 @@
       v-for="(note, index) in notes"
       :key="index"
       :index="index"
-      :keyNumber="note.key"
+      :storeKeyNumber="note.key"
       :storeTiming="note.timing"
       :storeLength="note.length" />
   </div>

@@ -2,7 +2,7 @@
   <div
     :style="{ bottom, left, width }"
     @mousedown="startMoving">
-    <div class="selection begin" />
+    <div class="selection begin" @mousedown.stop="startEditingStartTime" />
     <div class="selection end" @mousedown.stop="startEditingEndTime" />
   </div>
 </template>
@@ -15,7 +15,7 @@ import { keyWidth } from "@lib/config";
 export default {
   props: {
     index: Number,
-    keyNumber: Number,
+    storeKeyNumber: Number,
     storeTiming: Number,
     storeLength: Number
   },
@@ -30,8 +30,9 @@ export default {
       state: "normal",
       length: this.storeLength,
       timing: this.storeTiming,
+      keyNumber: this.storeKeyNumber,
       movingOffsetX: 0,
-      movingOffsetY: 0
+      movingFirstY: 0
     };
   },
   computed: {
@@ -50,7 +51,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["updateNoteLength", "removeNote"]),
+    ...mapActions([
+      "updateNoteLength",
+      "updateNoteTiming",
+      "updateNoteKeyNumber",
+      "removeNote"
+    ]),
     addListeners() {
       window.addEventListener("mousemove", this.updateEditing);
       window.addEventListener("mouseup", this.finishEditing);
@@ -63,11 +69,15 @@ export default {
       this.addListeners();
       this.state = "moving";
       this.movingOffsetX = event.layerX;
-      this.movingOffsetY = event.layerY;
+      this.movingFirstY = event.clientY;
     },
     startEditingEndTime() {
       this.addListeners();
       this.state = "editing-end-time";
+    },
+    startEditingStartTime() {
+      this.addListeners();
+      this.state = "editing-start-time";
     },
     updateEditing(event) {
       switch (this.state) {
@@ -79,6 +89,12 @@ export default {
           break;
         case "moving":
           this.timing = positionToTiming(event.clientX - 100 - this.movingOffsetX, this.minimumUnit);
+          this.keyNumber = this.storeKeyNumber +
+            Math.round((this.movingFirstY - event.clientY) / keyWidth);
+          break;
+        case "editing-start-time":
+          this.timing = positionToTiming(event.clientX - 100, this.minimumUnit);
+          this.length = this.storeLength + this.storeTiming - this.timing;
           break;
       }
     },
@@ -89,10 +105,24 @@ export default {
         return;
       }
       this.state = "normal";
-      this.updateNoteLength({
-        index: this.index,
-        length: this.length
-      });
+      if (this.storeLength !== this.length) {
+        this.updateNoteLength({
+          index: this.index,
+          length: this.length
+        });
+      }
+      if (this.storeTiming !== this.timing) {
+        this.updateNoteTiming({
+          index: this.index,
+          timing: this.timing
+        });
+      }
+      if (this.storeKeyNumber !== this.keyNumber) {
+        this.updateNoteKeyNumber({
+          index: this.index,
+          keyNumber: this.keyNumber
+        });
+      }
     }
   }
 };
