@@ -18,6 +18,9 @@ export const mutations = {
       key, timing,
       length: 0
     });
+  },
+  updateNoteLength(state, { index, length }) {
+    state.notes[index].length = length;
   }
 };
 
@@ -38,7 +41,8 @@ export function generateSimpleActions(mutations) {
 export const actions = {
   ...generateSimpleActions([
     "updateCurrentNote",
-    "addNote"
+    "addNote",
+    "updateNoteLength"
   ])
 };
 

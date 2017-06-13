@@ -8,6 +8,7 @@
     <note
       v-for="(note, index) in notes"
       :key="index"
+      :index="index"
       :keyName="note.key"
       :timing="note.timing"
       :length="note.length" />
