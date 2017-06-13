@@ -10,7 +10,7 @@ import { positionToTiming } from "@lib/timing";
 
 export default {
   props: {
-    keyName: String,
+    keyNumber: Number,
     keyType: String
   },
   computed: {
@@ -28,7 +28,7 @@ export default {
       this.startEditingScore();
       window.addEventListener("mouseup", this.end);
       this.addNote({
-        key: this.keyName,
+        key: this.keyNumber,
         timing: positionToTiming(event.offsetX, this.currentNote.length)
       });
     },

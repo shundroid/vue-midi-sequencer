@@ -3,13 +3,13 @@
     <score-row
       v-for="(key, index) in keys"
       :key="index"
-      :keyName="key.name"
+      :keyNumber="key.number"
       :keyType="key.type" />
     <note
       v-for="(note, index) in notes"
       :key="index"
       :index="index"
-      :keyName="note.key"
+      :keyNumber="note.key"
       :storeTiming="note.timing"
       :storeLength="note.length" />
   </div>
@@ -19,7 +19,7 @@
 import { mapState } from "vuex";
 import ScoreRow from "@components/ScoreRow";
 import Note from "@components/Note";
-import { allKeys, getTypeOfKey } from "@lib/getOctaves";
+import { allKeys, getTypeOfKey, getKeyNumber } from "@lib/getOctaves";
 
 export default {
   components: {
@@ -31,7 +31,7 @@ export default {
       keys: allKeys.map(key => {
         return {
           type: getTypeOfKey(key),
-          name: key
+          number: getKeyNumber(key)
         };
       }).reverse()
     };

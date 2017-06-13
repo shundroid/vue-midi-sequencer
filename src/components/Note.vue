@@ -10,13 +10,12 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { timingToPosition, positionToTiming } from "@lib/timing";
-import { getKeyNumber } from "@lib/getOctaves";
 import { keyWidth } from "@lib/config";
 
 export default {
   props: {
     index: Number,
-    keyName: String,
+    keyNumber: Number,
     storeTiming: Number,
     storeLength: Number
   },
@@ -41,7 +40,7 @@ export default {
     }),
     ...mapState(["isEditingScore"]),
     bottom() {
-      return `${(getKeyNumber(this.keyName) - 1) * keyWidth}px`;
+      return `${(this.keyNumber - 1) * keyWidth}px`;
     },
     left() {
       return `${timingToPosition(this.timing)}px`;
