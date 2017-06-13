@@ -10,7 +10,7 @@
       :key="index"
       :index="index"
       :keyName="note.key"
-      :timing="note.timing"
+      :storeTiming="note.timing"
       :storeLength="note.length" />
   </div>
 </template>

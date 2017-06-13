@@ -1,7 +1,9 @@
 <template>
   <div
     :style="{ bottom, left, width }"
-    @mousedown="startEditingEndTime">
+    @mousedown="startMoving">
+    <div class="selection begin" />
+    <div class="selection end" @mousedown.stop="startEditingEndTime" />
   </div>
 </template>
 
@@ -15,7 +17,7 @@ export default {
   props: {
     index: Number,
     keyName: String,
-    timing: Number,
+    storeTiming: Number,
     storeLength: Number
   },
   mounted() {
@@ -27,7 +29,10 @@ export default {
   data() {
     return {
       state: "normal",
-      length: this.storeLength
+      length: this.storeLength,
+      timing: this.storeTiming,
+      movingOffsetX: 0,
+      movingOffsetY: 0
     };
   },
   computed: {
@@ -55,16 +60,27 @@ export default {
       window.removeEventListener("mousemove", this.updateEditing);
       window.removeEventListener("mouseup", this.finishEditing);
     },
+    startMoving(event) {
+      this.addListeners();
+      this.state = "moving";
+      this.movingOffsetX = event.layerX;
+      this.movingOffsetY = event.layerY;
+    },
     startEditingEndTime() {
       this.addListeners();
       this.state = "editing-end-time";
     },
     updateEditing(event) {
-      if (this.state === "editing-end-time") {
-        this.length = positionToTiming(
-          event.clientX - 100,
-          this.minimumUnit
-        ) - this.timing;
+      switch (this.state) {
+        case "editing-end-time":
+          this.length = positionToTiming(
+            event.clientX - 100,
+            this.minimumUnit
+          ) - this.timing;
+          break;
+        case "moving":
+          this.timing = positionToTiming(event.clientX - 100 - this.movingOffsetX, this.minimumUnit);
+          break;
       }
     },
     finishEditing() {
@@ -89,5 +105,22 @@ div {
   height: 14px;
   background-color: #64b5f6;
   border: 2px solid #42a5f5;
+  cursor: move
+}
+.selection {
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  border-color: #64b5f6;
+}
+.begin {
+  cursor: w-resize;
+  top: 0;
+  left: 0;
+}
+.end {
+  cursor: e-resize;
+  top: 0;
+  right: 0;
 }
 </style>
