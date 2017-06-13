@@ -11,6 +11,7 @@
 import { mapState, mapActions } from "vuex";
 import { timingToPosition, positionToTiming } from "@lib/timing";
 import { keyWidth } from "@lib/config";
+import validateNoteDetails from "@lib/validateNoteDetails";
 
 export default {
   props: {
@@ -81,21 +82,35 @@ export default {
     },
     updateEditing(event) {
       switch (this.state) {
-        case "editing-end-time":
-          this.length = positionToTiming(
+        case "editing-end-time": {
+          const nextLength = positionToTiming(
             event.clientX - 100,
             this.minimumUnit
           ) - this.timing;
+          if (validateNoteDetails(this.timing, nextLength, this.keyNumber)) {
+            this.length = nextLength;
+          }
           break;
-        case "moving":
-          this.timing = positionToTiming(event.clientX - 100 - this.movingOffsetX, this.minimumUnit);
-          this.keyNumber = this.storeKeyNumber +
+        }
+        case "moving": {
+          const nextTiming = positionToTiming(event.clientX - 100 - this.movingOffsetX, this.minimumUnit);
+          const nextKeyNumber = this.storeKeyNumber +
             Math.round((this.movingFirstY - event.clientY) / keyWidth);
+          if (validateNoteDetails(nextTiming, this.length, nextKeyNumber)) {
+            this.timing = nextTiming;
+            this.keyNumber = nextKeyNumber;
+          }
           break;
-        case "editing-start-time":
-          this.timing = positionToTiming(event.clientX - 100, this.minimumUnit);
-          this.length = this.storeLength + this.storeTiming - this.timing;
+        }
+        case "editing-start-time": {
+          const nextTiming = positionToTiming(event.clientX - 100, this.minimumUnit);
+          const nextLength = this.storeLength + this.storeTiming - this.timing;
+          if (validateNoteDetails(nextTiming, nextLength, this.keyNumber)) {
+            this.timing = nextTiming;
+            this.length = nextLength;
+          }
           break;
+        }
       }
     },
     finishEditing() {
