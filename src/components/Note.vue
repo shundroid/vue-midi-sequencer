@@ -46,7 +46,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["updateNoteLength"]),
+    ...mapActions(["updateNoteLength", "removeNote"]),
     addListeners() {
       window.addEventListener("mousemove", this.updateEditing);
       window.addEventListener("mouseup", this.finishEditing);
@@ -69,6 +69,10 @@ export default {
     },
     finishEditing() {
       this.removeListeners();
+      if (this.length <= 0) {
+        this.removeNote(this.index);
+        return;
+      }
       this.state = "normal";
       this.updateNoteLength({
         index: this.index,

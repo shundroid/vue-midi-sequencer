@@ -23,6 +23,9 @@ export const mutations = {
   updateNoteLength(state, { index, length }) {
     state.notes[index].length = length;
   },
+  removeNote(state, index) {
+    state.notes.splice(index, 1);
+  },
   startEditingScore(state) {
     state.isEditingScore = true;
   },
@@ -49,6 +52,7 @@ export const actions = {
   ...generateSimpleActions([
     "updateCurrentNote",
     "addNote",
+    "removeNote",
     "updateNoteLength",
     "startEditingScore",
     "finishEditingScore"
