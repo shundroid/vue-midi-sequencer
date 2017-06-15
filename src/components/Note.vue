@@ -149,7 +149,8 @@ div {
   height: 14px;
   background-color: #64b5f6;
   border: 2px solid #42a5f5;
-  cursor: move
+  cursor: move;
+  z-index: 1;
 }
 .selection {
   position: absolute;

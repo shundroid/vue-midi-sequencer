@@ -34,6 +34,9 @@ export default {
 div {
   width: 100px;
   height: 100%;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 </style>
