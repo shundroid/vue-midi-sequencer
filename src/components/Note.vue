@@ -81,39 +81,36 @@ export default {
       this.state = "editing-start-time";
     },
     updateEditing(event) {
+      let nextTiming = this.timing;
+      let nextLength = this.length;
+      let nextKeyNumber = this.keyNumber;
       switch (this.state) {
         case "editing-end-time": {
-          const nextLength = positionToTiming(
+          nextLength = positionToTiming(
             event.clientX - 100 + this.getScrollLeft(),
             this.minimumUnit
           ) - this.timing;
-          if (validateNoteDetails(this.timing, nextLength, this.keyNumber)) {
-            this.length = nextLength;
-          }
           break;
         }
         case "moving": {
-          const nextTiming = positionToTiming(
+          nextTiming = positionToTiming(
             event.clientX - 100 - this.movingOffsetX + this.getScrollLeft(),
             this.minimumUnit
           );
-          const nextKeyNumber = this.storeKeyNumber +
+          nextKeyNumber = this.storeKeyNumber +
             Math.round((this.movingFirstY - (event.clientY + this.getScrollTop())) / keyWidth);
-          if (validateNoteDetails(nextTiming, this.length, nextKeyNumber)) {
-            this.timing = nextTiming;
-            this.keyNumber = nextKeyNumber;
-          }
           break;
         }
         case "editing-start-time": {
-          const nextTiming = positionToTiming(event.clientX - 100, this.minimumUnit);
-          const nextLength = this.storeLength + this.storeTiming - this.timing;
-          if (validateNoteDetails(nextTiming, nextLength, this.keyNumber)) {
-            this.timing = nextTiming;
-            this.length = nextLength;
-          }
+          nextTiming = positionToTiming(event.clientX - 100, this.minimumUnit);
+          nextLength = this.storeLength + this.storeTiming - this.timing;
           break;
         }
+      }
+      if (validateNoteDetails(nextTiming, nextLength, nextKeyNumber)) {
+        this.timing = nextTiming;
+        this.length = nextLength;
+        this.keyNumber = nextKeyNumber;
       }
     },
     getScrollLeft() {
