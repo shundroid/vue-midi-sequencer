@@ -1,5 +1,6 @@
 <template>
-  <div class="score">
+  <div class="score"
+    @scroll="onScroll">
     <div class="inner" :style="{ width }">
       <score-row
         v-for="(key, index) in keys"
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import ScoreRow from "@components/ScoreRow";
 import Note from "@components/Note";
 import ScoreLine from "@components/ScoreLine";
@@ -61,6 +62,12 @@ export default {
     width() {
       return `${this.beats.length * pixelPerBeat}px`;
     }
+  },
+  methods: {
+    ...mapActions(["scroll"]),
+    onScroll() {
+      this.scroll(this.$el.scrollTop);
+    }
   }
 };
 </script>
@@ -69,7 +76,7 @@ export default {
 .score {
   flex: 1;
   height: 100%;
-  overflow-x: scroll;
+  overflow: scroll;
 }
 .inner {
   position: relative;

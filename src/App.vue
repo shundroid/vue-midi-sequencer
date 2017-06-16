@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <section>
-      <main>
-        <keyboard />
-        <score />
-      </main>
+      <keyboard />
+      <score />
     </section>
     <button-container />
   </div>
@@ -31,15 +29,13 @@ export default {
 
 <style>
 #app {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   overflow: hidden;
   position: relative;
 }
 section {
   width: 100%;
   height: 100%;
-  position: relative;
-  overflow-y: scroll;
 }
 </style>

@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export const state = {
   currentNote: defaultNote,
   notes: [],
-  isEditingScore: false
+  isEditingScore: false,
+  scrollPosition: 0
 };
 
 export const mutations = {
@@ -37,6 +38,9 @@ export const mutations = {
   },
   finishEditingScore(state) {
     state.isEditingScore = false;
+  },
+  scroll(state, scrollPosition) {
+    state.scrollPosition = scrollPosition;
   }
 };
 
@@ -63,7 +67,8 @@ export const actions = {
     "updateNoteTiming",
     "updateNoteKeyNumber",
     "startEditingScore",
-    "finishEditingScore"
+    "finishEditingScore",
+    "scroll"
   ])
 };
 
