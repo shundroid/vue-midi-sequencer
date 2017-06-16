@@ -69,9 +69,9 @@ export default {
 .score {
   flex: 1;
   height: 100%;
+  overflow-x: scroll;
 }
 .inner {
   position: relative;
-  margin-left: 100px;
 }
 </style>

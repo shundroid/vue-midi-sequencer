@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="keyboard">
     <key
       v-for="(key, index) in keys"
       :key="index"
@@ -31,12 +31,9 @@ export default {
 </script>
 
 <style scoped>
-div {
+.keyboard {
   width: 100px;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
+  float: left;
 }
 </style>

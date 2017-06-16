@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <section>
-      <keyboard />
       <main>
+        <keyboard />
         <score />
       </main>
     </section>
@@ -39,10 +39,7 @@ export default {
 section {
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
   position: relative;
-}
-main {
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 </style>
