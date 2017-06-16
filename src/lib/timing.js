@@ -7,7 +7,8 @@ import { pixelPerBeat } from "@lib/config";
 
 export function positionToTiming(position, minimumUnit) {
   const timing = position / pixelPerBeat;
-  return Math.round(timing / minimumUnit);
+  const surplus = timing % minimumUnit;
+  return timing - surplus + (surplus > minimumUnit / 2 ? minimumUnit : 0);
 }
 
 export function timingToPosition(timing) {
