@@ -32,7 +32,7 @@ export default {
   computed: mapState(["scrollPosition"]),
   watch: {
     scrollPosition() {
-      this.$el.scrollTo(0, this.scrollPosition);
+      this.$el.scrollTop = this.scrollPosition;
     }
   }
 };
