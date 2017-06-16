@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "notes";
+  src: url("./assets/notes.woff");
+}
+
+#app * {
+  user-select: none;
+}

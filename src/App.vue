@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <main>
+    <section>
       <keyboard />
       <score />
-    </main>
+    </section>
     <button-container />
   </div>
 </template>
@@ -14,6 +14,7 @@ import Score from "@components/Score";
 import ButtonContainer from "@components/ButtonContainer";
 import store from "@vuex/store";
 import "./vueMaterial";
+import "./style.css";
 
 export default {
   name: "app",
@@ -26,16 +27,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
 }
-main {
+section {
+  width: 100%;
   height: 100%;
-  overflow: scroll;
-  display: flex;
 }
 </style>
