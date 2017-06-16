@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   width: 100%;
   height: 100%;
@@ -37,9 +37,5 @@ export default {
 section {
   width: 100%;
   height: 100%;
-}
-
-#app * {
-  user-select: none;
 }
 </style>
