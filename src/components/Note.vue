@@ -70,7 +70,7 @@ export default {
       this.addListeners();
       this.state = "moving";
       this.movingOffsetX = event.layerX;
-      this.movingFirstY = event.clientY;
+      this.movingFirstY = event.clientY + this.getScrollTop();
     },
     startEditingEndTime() {
       this.addListeners();
@@ -84,7 +84,7 @@ export default {
       switch (this.state) {
         case "editing-end-time": {
           const nextLength = positionToTiming(
-            event.clientX - 100,
+            event.clientX - 100 + this.getScrollLeft(),
             this.minimumUnit
           ) - this.timing;
           if (validateNoteDetails(this.timing, nextLength, this.keyNumber)) {
@@ -93,9 +93,12 @@ export default {
           break;
         }
         case "moving": {
-          const nextTiming = positionToTiming(event.clientX - 100 - this.movingOffsetX, this.minimumUnit);
+          const nextTiming = positionToTiming(
+            event.clientX - 100 - this.movingOffsetX + this.getScrollLeft(),
+            this.minimumUnit
+          );
           const nextKeyNumber = this.storeKeyNumber +
-            Math.round((this.movingFirstY - event.clientY) / keyWidth);
+            Math.round((this.movingFirstY - (event.clientY + this.getScrollTop())) / keyWidth);
           if (validateNoteDetails(nextTiming, this.length, nextKeyNumber)) {
             this.timing = nextTiming;
             this.keyNumber = nextKeyNumber;
@@ -112,6 +115,12 @@ export default {
           break;
         }
       }
+    },
+    getScrollLeft() {
+      return this.$el.parentNode.parentNode.scrollLeft;
+    },
+    getScrollTop() {
+      return this.$el.parentNode.parentNode.scrollTop;
     },
     finishEditing() {
       this.removeListeners();
