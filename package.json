@@ -1,18 +1,22 @@
 {
   "name": "vue-midi-sequencer",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A midi sequencer made with vue.js",
   "author": "shundroid <shundroidk@gmail.com>",
-  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
+    "build:npm": "webpack --config build/webpack.npm.conf.js --color --progress",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
     "lint:fix": "eslint --fix --ext .js,.vue src test/unit/specs"
   },
+  "main": "dist/package.js",
+  "files":[
+    "dist"
+  ],
   "dependencies": {
     "vue": "^2.3.3",
     "vue-material": "^0.7.1",
