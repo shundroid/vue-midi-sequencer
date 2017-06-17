@@ -72,6 +72,11 @@ module.exports = {
       })
     ]
   },
+  externals: [
+    "vue",
+    "vuex",
+    "vue-material"
+  ],
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       compress: {

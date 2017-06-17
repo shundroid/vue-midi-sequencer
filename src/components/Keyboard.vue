@@ -32,6 +32,8 @@ export default {
   computed: mapState(["scrollPosition"]),
   watch: {
     scrollPosition() {
+      /*eslint-disable no-console*/
+      console.log("AAAAA");
       this.$el.scrollTop = this.scrollPosition;
     }
   }
