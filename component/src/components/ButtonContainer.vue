@@ -30,6 +30,11 @@ img {
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-end;
+  pointer-events: none;
+}
+
+.container > * {
+  pointer-events: all;
 }
 
 .md-fab-bottom-right {
