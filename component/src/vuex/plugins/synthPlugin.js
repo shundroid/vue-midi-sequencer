@@ -52,7 +52,11 @@ export class SynthPlugin {
         length: timingToSeconds(note.length, bpm)
       };
     });
-    this.next(currentSynth);
+    if (this.notes[0].timing === 0) {
+      this.next(currentSynth);
+    } else {
+      this.timeoutIds.push(setTimeout(this.next, this.notes[0].seconds, currentSynth));
+    }
   }
   next = (currentSynth, index = 0) => {
     if (index < this.notes.length) {
