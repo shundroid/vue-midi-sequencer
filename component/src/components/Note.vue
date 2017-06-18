@@ -123,6 +123,8 @@ export default {
         return;
       }
       this.state = "normal";
+      this.movingFirstY = 0;
+      this.movingOffsetX = 0;
       if (this.storeLength !== this.length) {
         this.updateNoteLength({
           index: this.index,
