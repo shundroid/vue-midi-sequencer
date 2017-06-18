@@ -13,12 +13,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            plugins: [require("babel-plugin-transform-runtime")]
-          }
-        },
+        use: "babel-loader",
         exclude: /node_modules/
       },
       {
@@ -53,8 +48,7 @@ module.exports = {
       "@": path.join(__dirname, "./src"),
       "@components": path.join(__dirname, "./src/components"),
       "@lib": path.join(__dirname, "./src/lib"),
-      "@vuex": path.join(__dirname, "./src/vuex"),
-      "@synth": path.join(__dirname, "./src/synth")
+      "@vuex": path.join(__dirname, "./src/vuex")
     }
   }
 };

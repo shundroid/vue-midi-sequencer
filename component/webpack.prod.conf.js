@@ -42,8 +42,7 @@ module.exports = {
       "@": path.join(__dirname, "./src"),
       "@components": path.join(__dirname, "./src/components"),
       "@lib": path.join(__dirname, "./src/lib"),
-      "@vuex": path.join(__dirname, "./src/vuex"),
-      "@synth": path.join(__dirname, "./src/synth")
+      "@vuex": path.join(__dirname, "./src/vuex")
     }
   },
   externals: [

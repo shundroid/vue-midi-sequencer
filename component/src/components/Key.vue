@@ -1,16 +1,9 @@
 <template lang="pug">
-  button(
-    :class="classes",
-    :style="{ top: index * 14 + 'px' }",
-    @mousedown="mousedown"
-  )
+  button(:class="classes", :style="{ top: index * 14 + 'px' }")
     | {{ caption }}
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { getKeyNumber } from "@lib/getOctaves";
-
 export default {
   props: {
     pitch: String,
@@ -26,17 +19,6 @@ export default {
     },
     caption() {
       return /C[0-9]/.test(this.pitch) ? this.pitch : "";
-    }
-  },
-  methods: {
-    ...mapActions(["startPreview", "finishPreview"]),
-    mousedown() {
-      window.addEventListener("mouseup", this.mouseup);
-      this.startPreview(getKeyNumber(this.pitch));
-    },
-    mouseup() {
-      window.removeEventListener("mouseup", this.mouseup);
-      this.finishPreview();
     }
   }
 };

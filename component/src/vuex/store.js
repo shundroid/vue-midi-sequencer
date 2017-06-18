@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { defaultNote } from "@lib/config";
-import createSynthPlugin from "@vuex/plugins/synthPlugin";
-import SquareSynth from "@synth/square";
 
 Vue.use(Vuex);
 
@@ -10,11 +8,7 @@ export const state = {
   currentNote: defaultNote,
   notes: [],
   isEditingScore: false,
-  scrollPosition: 0,
-  previewingKeyNumber: null,
-  currentSynth: new SquareSynth(),
-  appState: "editing",
-  bpm: 120
+  scrollPosition: 0
 };
 
 export const mutations = {
@@ -47,19 +41,6 @@ export const mutations = {
   },
   scroll(state, scrollPosition) {
     state.scrollPosition = scrollPosition;
-  },
-  startPreview(state, keyNumber) {
-    state.previewingKeyNumber = keyNumber;
-  },
-  finishPreview(state) {
-    state.previewingKeyNumber = null;
-  },
-  play(state) {
-    state.appState = "playing";
-  },
-  stop() {},
-  finishMusic() {
-    state.appState = "editing";
   }
 };
 
@@ -87,12 +68,7 @@ export const actions = {
     "updateNoteKeyNumber",
     "startEditingScore",
     "finishEditingScore",
-    "scroll",
-    "startPreview",
-    "finishPreview",
-    "play",
-    "stop",
-    "finishMusic"
+    "scroll"
   ])
 };
 
@@ -100,5 +76,5 @@ export default new Vuex.Store({
   state,
   mutations,
   actions,
-  plugins: [createSynthPlugin()]
+  plugins: []
 });

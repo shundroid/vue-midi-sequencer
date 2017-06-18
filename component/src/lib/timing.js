@@ -14,7 +14,3 @@ export function positionToTiming(position, minimumUnit) {
 export function timingToPosition(timing) {
   return timing * pixelPerBeat;
 }
-
-export function timingToSeconds(timing, bpm) {
-  return timing * 60 / bpm * 1000;
-}
