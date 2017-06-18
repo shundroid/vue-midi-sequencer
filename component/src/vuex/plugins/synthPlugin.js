@@ -63,7 +63,7 @@ export class SynthPlugin {
       const note = this.notes[index];
       currentSynth.play(note.frequency, note.length);
       if (index + 1 >= this.notes.length) {
-        setTimeout(this.stop, note.length, currentSynth);
+        this.timeoutIds.push(setTimeout(this.stop, note.length, currentSynth));
         return;
       }
       if (this.notes[index + 1].seconds === note.seconds) {
