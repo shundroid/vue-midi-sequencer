@@ -38,11 +38,6 @@ export class SynthPlugin {
     });
     this.next(currentSynth);
   }
-  generateSequence = function* (notes, bpm) {
-    for (let i = 0; i < sortedNotes.length; i++) {
-      yield { note: sortedNotes[i], index: i };
-    }
-  }
   next = (currentSynth, index = 0) => {
     if (index < this.notes.length) {
       const note = this.notes[index];

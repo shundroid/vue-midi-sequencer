@@ -30,17 +30,12 @@ export default class SquareSynth extends SynthBase {
     osc.type = "square";
     return osc;
   }
-  createTimeoutId(time, callback) {
-    this.timeoutIds(() => {
-      callback
-    }, time);
-  }
   play(frequency, time = null) {
     let note;
     if (time) {
       note = new Note(this.createOsc(), frequency, time, () => {
         this.notes.splice(this.notes.indexOf(note), 1);
-      })
+      });
     } else {
       note = new Note(this.createOsc(), frequency);
     }
