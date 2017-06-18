@@ -12,7 +12,7 @@
     "build:component:watch": "webpack --watch --config component/webpack.config.js --progress --color",
     "build:package": "webpack --config component/webpack.prod.conf.js --progress --color",
     "build:outside": "webpack --config webpack.config.js --progress --color",
-    "dev": "webpack-dev-server --hot --config component/webpack.config.js --progress --color"
+    "dev": "webpack-dev-server --hot --config component/webpack.config.js --progress --color --inline"
   },
   "license": "ISC",
   "devDependencies": {

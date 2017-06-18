@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   entry: path.join(__dirname, "./src/main.js"),
@@ -7,6 +8,7 @@ module.exports = {
     path: path.join(__dirname, "./dist"),
     filename: "bundle.js"
   },
+  devtool: "#cheap-module-eval-source-map",
   module: {
     rules: [
       {
@@ -36,7 +38,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "./template.html")
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
     extensions: [".vue", ".js", ".json"],
