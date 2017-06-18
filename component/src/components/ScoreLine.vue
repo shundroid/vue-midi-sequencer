@@ -1,5 +1,5 @@
-<template>
-  <div :style="{ left }" />
+<template lang="pug">
+  div(:style="{ left }")
 </template>
 
 <script>

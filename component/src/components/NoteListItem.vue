@@ -1,7 +1,6 @@
-<template>
-  <md-button class="md-fab md-mini md-clean button" @click.native="click">
-    {{ note.font }}
-  </md-button>
+<template lang="pug">
+  md-button.md-fab.md-mini.md-clean.button(@click.native="click")
+    | {{ note.font }}
 </template>
 
 <script>

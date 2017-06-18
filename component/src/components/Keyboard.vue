@@ -1,13 +1,13 @@
-<template>
-  <div class="keyboard">
-    <key
-      v-for="(key, index) in keys"
-      :key="index"
-      :index="index"
-      :keyType="key.type"
-      :pitch="key.name" />
-    <div class="space"></div>
-  </div>
+<template lang="pug">
+  .keyboard
+    key(
+      v-for="(key, index) in keys",
+      :key="index",
+      :index="index",
+      :keyType="key.type",
+      :pitch="key.name"
+    )
+    .space
 </template>
 
 <script>

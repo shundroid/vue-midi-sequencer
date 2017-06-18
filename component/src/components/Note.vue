@@ -1,10 +1,7 @@
-<template>
-  <div
-    :style="{ bottom, left, width }"
-    @mousedown="startMoving">
-    <div class="selection begin" @mousedown.stop="startEditingStartTime" />
-    <div class="selection end" @mousedown.stop="startEditingEndTime" />
-  </div>
+<template lang="pug">
+  div(:style="{ bottom, left, width }", @mousedown="startMoving")
+    .selection.begin(@mousedown.stop="startEditingStartTime")
+    .selection.end(@mousedown.stop="startEditingEndTime")
 </template>
 
 <script>
