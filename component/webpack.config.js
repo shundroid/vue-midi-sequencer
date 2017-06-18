@@ -51,4 +51,4 @@ module.exports = {
       "@vuex": path.join(__dirname, "./src/vuex")
     }
   }
-}
+};

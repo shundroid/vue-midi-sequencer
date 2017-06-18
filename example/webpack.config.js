@@ -35,4 +35,4 @@ module.exports = {
       "component": path.join(__dirname, "../component/dist/package.js")
     }
   }
-}
+};
