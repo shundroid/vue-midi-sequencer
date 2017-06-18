@@ -1,25 +1,25 @@
-<template>
-  <div class="score"
-    @scroll="onScroll">
-    <div class="inner" :style="{ width }">
-      <score-row
-        v-for="(key, index) in keys"
-        :key="index"
-        :keyNumber="key.number"
-        :keyType="key.type" />
-      <note
-        v-for="(note, index) in notes"
-        :key="index"
+<template lang="pug">
+  .score(@scroll="onScroll")
+    .inner(:style="{ width }")
+      score-row(
+        v-for="(key, index) in keys",
+        :key="index",
+        :keyNumber="key.number",
+        :keyType="key.type"
+      )
+      note(
+        v-for="(note, index) in notes",
+        :key="index",
+        :index="index",
+        :storeKeyNumber="note.key",
+        :storeTiming="note.timing",
+        :storeLength="note.length"
+      )
+      score-line(
+        v-for="(beat, index) in beats",
+        :key="index",
         :index="index"
-        :storeKeyNumber="note.key"
-        :storeTiming="note.timing"
-        :storeLength="note.length" />
-      <score-line
-        v-for="(beat, index) in beats"
-        :key="index"
-        :index="index" />
-    </div>
-  </div>
+      )
 </template>
 
 <script>

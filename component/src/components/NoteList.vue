@@ -1,13 +1,12 @@
-<template>
-  <md-speed-dial md-mode="scale" class="md-fab-bottom-right">
-    <md-button class="md-fab note-preview" md-fab-trigger>
-      {{ currentNote.font }}
-    </md-button>
-    <note-list-item
-      v-for="(note, index) in notes"
+<template lang="pug">
+  md-speed-dial.md-fab-bottom-right(md-mode="scale")
+    md-button.md-fab.note-preview(md-fab-trigger)
+      | {{ currentNote.font }}
+    note-list-item(
+      v-for="(note, index) in notes",
       :key="index"
-      :note="note" />
-  </md-speed-dial>
+      :note="note"
+    )
 </template>
 
 <script>

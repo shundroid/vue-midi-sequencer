@@ -1,11 +1,9 @@
-<template>
-  <div id="app">
-    <section>
-      <keyboard />
-      <score />
-    </section>
-    <button-container />
-  </div>
+<template lang="pug">
+  #app
+    section
+      keyboard
+      score
+    button-container
 </template>
 
 <script>

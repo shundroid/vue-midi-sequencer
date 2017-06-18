@@ -1,13 +1,10 @@
-<template>
-  <div class="container">
-    <md-button class="md-icon-button md-raised md-accent">
-      <md-icon>list</md-icon>
-    </md-button>
-    <note-list />
-    <md-button class="md-icon-button md-raised md-accent">
-      <md-icon>play_arrow</md-icon>
-    </md-button>
-  </div>
+<template lang="pug">
+  .container
+    md-button.md-icon-button.md-raised.md-accent
+      md-icon list
+    note-list
+    md-button.md-icon-button.md-raised.md-accent
+      md-icon play_arrow
 </template>
 
 <script>

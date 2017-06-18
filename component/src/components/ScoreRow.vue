@@ -1,7 +1,5 @@
-<template>
-  <div
-    :class="classes"
-    @mousedown="add" />
+<template lang="pug">
+  div(:class="classes", @mousedown="add")
 </template>
 
 <script>

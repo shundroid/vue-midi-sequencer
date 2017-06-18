@@ -1,7 +1,6 @@
-<template>
-  <button :class="classes" :style="{ top: index * 14 + 'px' }">
-    {{ caption }}
-  </button>
+<template lang="pug">
+  button(:class="classes", :style="{ top: index * 14 + 'px' }")
+    | {{ caption }}
 </template>
 
 <script>

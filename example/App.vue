@@ -1,7 +1,6 @@
-<template>
-  <div>
-    <component />
-  </div>
+<template lang="pug">
+  div
+    component
 </template>
 
 <script>
