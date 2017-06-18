@@ -13,7 +13,6 @@ import Keyboard from "@components/Keyboard";
 import Score from "@components/Score";
 import ButtonContainer from "@components/ButtonContainer";
 import store from "@vuex/store";
-import "./vueMaterial";
 import "./style.css";
 
 export default {
@@ -29,8 +28,6 @@ export default {
 
 <style scoped>
 #app {
-  width: 100%;
-  height: 100%;
   overflow: hidden;
   position: relative;
 }
