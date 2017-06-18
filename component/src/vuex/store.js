@@ -57,7 +57,8 @@ export const mutations = {
   play(state) {
     state.appState = "playing";
   },
-  stop(state) {
+  stop() {},
+  finishMusic() {
     state.appState = "editing";
   }
 };
@@ -90,7 +91,8 @@ export const actions = {
     "startPreview",
     "finishPreview",
     "play",
-    "stop"
+    "stop",
+    "finishMusic"
   ])
 };
 

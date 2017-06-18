@@ -2,7 +2,9 @@ import getFrequency from "@lib/frequency";
 import { timingToSeconds } from "@lib/timing";
 
 export class SynthPlugin {
+  store = null;
   plugin = store => {
+    this.store = store;
     store.subscribe((mutation, state) => {
       switch (mutation.type) {
         case "startPreview": {
@@ -15,11 +17,25 @@ export class SynthPlugin {
         }
         case "play": {
           this.play(state.currentSynth, state.notes, state.bpm);
+          break;
+        }
+        case "stop": {
+          this.stop(state.currentSynth);
         }
       }
     });
   };
-  notes = null;
+  stop = currentSynth => {
+    currentSynth.stop();
+    this.notes = [];
+    for (let timeoutId of this.timeoutIds) {
+      clearTimeout(timeoutId);
+    }
+    this.timeoutIds = [];
+    this.store.commit("finishMusic");
+  }
+  notes = [];
+  timeoutIds = [];
   startPreview(currentSynth, keyNumber) {
     currentSynth.play(getFrequency(keyNumber));
   }
@@ -43,18 +59,18 @@ export class SynthPlugin {
       const note = this.notes[index];
       currentSynth.play(note.frequency, note.length);
       if (index + 1 >= this.notes.length) {
-        // todo
+        setTimeout(this.stop, note.length, currentSynth);
         return;
       }
       if (this.notes[index + 1].seconds === note.seconds) {
         this.next(currentSynth, index + 1);
       } else {
-        setTimeout(
+        this.timeoutIds.push(setTimeout(
           this.next,
           this.notes[index + 1].seconds - note.seconds,
           currentSynth,
           index + 1
-        );
+        ));
       }
     }
   };
