@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   entry: path.join(__dirname, "./src/App.vue"),
@@ -49,5 +49,11 @@ module.exports = {
     "vue",
     "vuex",
     "vue-material"
+  ],
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
+      sourceMap: true
+    })
   ]
 }

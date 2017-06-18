@@ -1,6 +1,6 @@
 {
   "name": "vue-midi-sequencer",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "A midi sequencer made with vue.js",
   "author": "shundroid <shundroidk@gmail.com>",
   "main": "component/dist/package.js",
@@ -14,7 +14,6 @@
     "build:outside": "webpack --config webpack.config.js --progress --color",
     "dev": "webpack-dev-server --hot --config component/webpack.config.js --progress --color"
   },
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.24.1",
