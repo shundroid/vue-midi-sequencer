@@ -1,4 +1,5 @@
 # vue-midi-sequencer
+![](https://travis-ci.org/shundroid/vue-midi-sequencer.svg?branch=master)
 
 > A midi sequencer made with vue.js
 

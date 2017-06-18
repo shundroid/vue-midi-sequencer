@@ -14,7 +14,8 @@
     "build:example": "webpack --config example/webpack.config.js --progress --color",
     "dev": "webpack-dev-server --hot --config component/webpack.config.js --progress --color --inline",
     "lint": "eslint --ext .js,.vue component example",
-    "lint:fix": "eslint --fix --ext .js,.vue component example"
+    "lint:fix": "eslint --fix --ext .js,.vue component example",
+    "test": "npm run lint"
   },
   "license": "ISC",
   "devDependencies": {
