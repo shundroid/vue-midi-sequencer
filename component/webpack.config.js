@@ -13,7 +13,12 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            plugins: [require("babel-plugin-transform-runtime")]
+          }
+        },
         exclude: /node_modules/
       },
       {

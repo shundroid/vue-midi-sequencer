@@ -12,7 +12,7 @@ export default {
     keyType: String
   },
   computed: {
-    ...mapState(["currentNote"]),
+    ...mapState(["currentNote", "appState"]),
     classes() {
       return {
         "black-score": this.keyType === "black",
@@ -23,6 +23,7 @@ export default {
   methods: {
     ...mapActions(["addNote", "startEditingScore", "finishEditingScore"]),
     add(event) {
+      if (this.appState === "playing") return;
       this.startEditingScore();
       window.addEventListener("mouseup", this.end);
       this.addNote({

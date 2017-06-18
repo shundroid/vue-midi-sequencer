@@ -3,16 +3,17 @@
     md-button.md-icon-button.md-raised.md-accent
       md-icon list
     note-list
-    md-button.md-icon-button.md-raised.md-accent
-      md-icon play_arrow
+    play-button
 </template>
 
 <script>
 import NoteList from "@components/NoteList";
+import PlayButton from "@components/PlayButton";
 
 export default {
   components: {
-    NoteList
+    NoteList,
+    PlayButton
   }
 };
 </script>

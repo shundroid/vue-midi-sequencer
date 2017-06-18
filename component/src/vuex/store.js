@@ -12,7 +12,9 @@ export const state = {
   isEditingScore: false,
   scrollPosition: 0,
   previewingKeyNumber: null,
-  currentSynth: new SquareSynth()
+  currentSynth: new SquareSynth(),
+  appState: "editing",
+  bpm: 120
 };
 
 export const mutations = {
@@ -51,6 +53,12 @@ export const mutations = {
   },
   finishPreview(state) {
     state.previewingKeyNumber = null;
+  },
+  play(state) {
+    state.appState = "playing";
+  },
+  stop(state) {
+    state.appState = "editing";
   }
 };
 
@@ -80,7 +88,9 @@ export const actions = {
     "finishEditingScore",
     "scroll",
     "startPreview",
-    "finishPreview"
+    "finishPreview",
+    "play",
+    "stop"
   ])
 };
 
