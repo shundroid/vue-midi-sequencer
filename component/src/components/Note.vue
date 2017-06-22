@@ -162,6 +162,17 @@ export default {
         });
       }
     }
+  },
+  watch: {
+    storeKeyNumber() {
+      this.keyNumber = this.storeKeyNumber;
+    },
+    storeLength() {
+      this.length = this.storeLength;
+    },
+    storeTiming() {
+      this.timing = this.storeTiming;
+    }
   }
 };
 </script>
