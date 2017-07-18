@@ -1,5 +1,9 @@
 <template lang="pug">
-  div(:style="{ bottom, left, width }", @mousedown="startMoving")
+  div(
+    :style="{ bottom, left, width }",
+    @mousedown.left="startMoving",
+    @contextmenu.prevent="remove"
+  )
     .selection.begin(@mousedown.stop="startEditingStartTime")
     .selection.end(@mousedown.stop="startEditingEndTime")
 </template>
@@ -161,6 +165,9 @@ export default {
           keyNumber: this.keyNumber
         });
       }
+    },
+    remove() {
+      this.removeNote(this.index);
     }
   },
   watch: {
