@@ -1,6 +1,6 @@
 <template lang="pug">
-  md-speed-dial.md-fab-bottom-right(md-mode="scale")
-    md-button.md-fab.note-preview(md-fab-trigger)
+  md-speed-dial.m-dial.md-fab-bottom-right(md-mode="scale")
+    md-button.m-button.md-fab.note-preview(md-fab-trigger)
       | {{ currentNote.font }}
     note-list-item(
       v-for="(note, index) in notes",
@@ -33,5 +33,13 @@ export default {
 .note-preview {
   font-family: "notes";
   font-size: 20px;
+}
+
+.m-dial {
+  pointer-events: none;
+}
+
+.m-button {
+  pointer-events: all;
 }
 </style>
