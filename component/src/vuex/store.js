@@ -60,6 +60,9 @@ export const mutations = {
   stop() {},
   finishMusic() {
     state.appState = "editing";
+  },
+  updateBPM(state, bpm) {
+    state.bpm = bpm;
   }
 };
 
@@ -92,7 +95,8 @@ export const actions = {
     "finishPreview",
     "play",
     "stop",
-    "finishMusic"
+    "finishMusic",
+    "updateBPM"
   ])
 };
 
