@@ -1,7 +1,6 @@
 <template lang="pug">
   .container
-    md-button.md-icon-button.md-raised.md-accent
-      md-icon list
+    preferences-button
     note-list
     play-button
 </template>
@@ -9,11 +8,13 @@
 <script>
 import NoteList from "@components/NoteList";
 import PlayButton from "@components/PlayButton";
+import PreferencesButton from "@components/PreferencesButton";
 
 export default {
   components: {
     NoteList,
-    PlayButton
+    PlayButton,
+    PreferencesButton
   }
 };
 </script>

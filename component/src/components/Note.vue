@@ -1,5 +1,9 @@
 <template lang="pug">
-  div(:style="{ bottom, left, width }", @mousedown="startMoving")
+  div(
+    :style="{ bottom, left, width }",
+    @mousedown.left="startMoving",
+    @contextmenu.prevent="remove"
+  )
     .selection.begin(@mousedown.stop="startEditingStartTime")
     .selection.end(@mousedown.stop="startEditingEndTime")
 </template>
@@ -9,6 +13,8 @@ import { mapState, mapActions } from "vuex";
 import { timingToPosition, positionToTiming } from "@lib/timing";
 import { keyWidth } from "@lib/config";
 import validateNoteDetails from "@lib/validateNoteDetails";
+
+const noFirstX = Symbol();
 
 export default {
   props: {
@@ -30,6 +36,7 @@ export default {
       timing: this.storeTiming,
       keyNumber: this.storeKeyNumber,
       movingOffsetX: 0,
+      movingFirstX: noFirstX,
       movingFirstY: 0
     };
   },
@@ -67,31 +74,37 @@ export default {
       this.addListeners();
       this.state = "moving";
       this.movingOffsetX = event.layerX;
-      this.movingFirstY = event.clientY + this.getScrollTop();
+      this.movingFirstX = this.getAbsoluteLeft(event.clientX) - this.movingOffsetX;
+      this.movingFirstY = this.getAbsoluteTop(event.clientY);
     },
     startEditingEndTime() {
       this.addListeners();
       this.state = "editing-end-time";
+      this.movingFirstX = this.getAbsoluteLeft(event.clientX);
     },
     startEditingStartTime() {
       this.addListeners();
       this.state = "editing-start-time";
+      this.movingFirstX = this.getAbsoluteLeft(event.clientX);
     },
     updateEditing(event) {
       let nextTiming = this.timing;
       let nextLength = this.length;
       let nextKeyNumber = this.keyNumber;
+      if (this.movingFirstX === noFirstX) {
+        this.movingFirstX = this.getAbsoluteLeft(event.clientX);
+      }
       switch (this.state) {
         case "editing-end-time": {
-          nextLength = positionToTiming(
-            event.clientX - 100 + this.getScrollLeft(),
+          nextLength = this.storeLength + positionToTiming(
+            this.getAbsoluteLeft(event.clientX) - this.movingFirstX,
             this.minimumUnit
-          ) - this.timing;
+          );
           break;
         }
         case "moving": {
-          nextTiming = positionToTiming(
-            event.clientX - 100 - this.movingOffsetX + this.getScrollLeft(),
+          nextTiming = this.storeTiming + positionToTiming(
+            this.getAbsoluteLeft(event.clientX - this.movingOffsetX) - this.movingFirstX,
             this.minimumUnit
           );
           nextKeyNumber = this.storeKeyNumber +
@@ -99,7 +112,10 @@ export default {
           break;
         }
         case "editing-start-time": {
-          nextTiming = positionToTiming(event.clientX - 100, this.minimumUnit);
+          nextTiming = this.storeTiming + positionToTiming(
+            this.getAbsoluteLeft(event.clientX) - this.movingFirstX,
+            this.minimumUnit
+          );
           nextLength = this.storeLength + this.storeTiming - this.timing;
           break;
         }
@@ -115,6 +131,12 @@ export default {
     },
     getScrollTop() {
       return this.$el.parentNode.parentNode.scrollTop;
+    },
+    getAbsoluteLeft(left) {
+      return left + this.getScrollLeft() - 100;
+    },
+    getAbsoluteTop(top) {
+      return top + this.getScrollTop();
     },
     finishEditing() {
       this.removeListeners();
@@ -143,6 +165,20 @@ export default {
           keyNumber: this.keyNumber
         });
       }
+    },
+    remove() {
+      this.removeNote(this.index);
+    }
+  },
+  watch: {
+    storeKeyNumber() {
+      this.keyNumber = this.storeKeyNumber;
+    },
+    storeLength() {
+      this.length = this.storeLength;
+    },
+    storeTiming() {
+      this.timing = this.storeTiming;
     }
   }
 };

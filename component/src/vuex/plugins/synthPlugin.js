@@ -6,6 +6,7 @@ export class SynthPlugin {
   plugin = store => {
     this.store = store;
     store.subscribe((mutation, state) => {
+      state = Object.assign({}, state);
       switch (mutation.type) {
         case "startPreview": {
           this.startPreview(state.currentSynth, mutation.payload);
